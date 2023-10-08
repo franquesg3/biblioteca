@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Merienda', cursive;
+}
+
+.container {
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffffc2;
+    width: 680px;
+    height: 480px;
+    border-radius: 5%;
+    text-align: center;
+}
+
+body {
+    background-image: url(./img/biblioteca.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+input {
+    width: 180px;
+    height: 48px;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.sistema {
+    font-size: 24px;
+    text-align: center;
+    padding: 25px;
+}
+
+.cadastrar {
+    background: #10c192;
+    width: 120px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    position: center;
+    margin-top: 0px;
+}
+

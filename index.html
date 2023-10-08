@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Virtual</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="sistema">
+            <h1>Cadastramento de livros</h1>
+            <p>Insira as informações solicitadas nos campos abaixo</p>
+        </header>
+        <form id="formulario" class="formulario">
+            <div>
+                <input type="text" name="titulo" placeholder="Título" id="titulo">
+            </div>
+            <div>
+                <input type="text" name="autor" placeholder="Autor" id="autor">
+            </div>
+            <div>
+                <input type="text" name="editora" placeholder="Editora" id="editora">
+            </div>
+            <div>
+                <input type="number" name="numeroPaginas" placeholder="Páginas" id="numeroPaginas">
+            </div>
+            <button type="submit" class="cadastrar">Cadastrar</button>
+        </form>
+    </div>
+</body>
+<script>
+    function criarObjeto() {
+        // Captura os valores dos campos de entrada
+        var titulo = document.getElementById('titulo').value;
+        var autor = document.getElementById('autor').value;
+        var editora = document.getElementById('editora').value;
+        var numeroPaginas = document.getElementById('numeroPaginas').value;
+
+
+
+        // Cria um objeto JavaScript com os valores capturados
+        var objetoDadosCadastro = {
+            titulo: titulo,
+            autor: autor,
+            editora: editora,
+            numeroPaginas: numeroPaginas
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const formulario = document.getElementById("formulario");
+
+            formulario.addEventListener("submit", function (event) {
+                event.preventDefault(); // Impede o envio padrão do formulário
+
+                const formData = new FormData(formulario);
+
+                // Envia o objeto para o servidor via AJAX usando a API fetch
+                fetch('http://localhost:3000/livros', {
+                    method: 'POST', // Método HTTP para enviar dados
+                    headers: {
+                        'Content-Type': 'application/json' // Tipo de conteúdo do corpo da requisição
+                    },
+                    body: JSON.stringify(objetoDadosCadastro) // Converte o objeto em JSON e envia no corpo da requisição
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json(); // Se a resposta for JSON
+                        } else {
+                            throw new Error("Erro na requisição");
+                        }
+                    })
+                    .then(data => {
+                        // Faça algo com a resposta do servidor
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error("Erro ao enviar os dados:", error);
+                    });
+            });
+        });
+    }
+</script>
+</html>
